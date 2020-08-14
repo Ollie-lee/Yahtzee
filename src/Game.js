@@ -96,6 +96,15 @@ class Game extends Component {
     return (this.state.rolling.some((d) => d === true)) ? 'Rolling' : `${this.state.rollsLeft} Rerolls Left`
   }
 
+  renderScore = () => {
+    let totalScore = 0;
+    const { scores } = this.state;
+    for (let key in scores) {
+      if (scores[key]) totalScore += scores[key];
+
+    }
+    return totalScore;
+  }
   render() {
     return (
       <div className='Game'>
@@ -122,6 +131,7 @@ class Game extends Component {
           </section>
         </header>
         <ScoreTable doScore={this.doScore} scores={this.state.scores} />
+        <h2>Total Score: {this.renderScore()}</h2>
       </div>
     );
   }
